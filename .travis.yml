@@ -7,3 +7,16 @@ before_install:
 
 script:
   - docker run brutebeer/docker-react-proj npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-southeast-1"
+  app: "docker-react-proj"
+  env: "DockerReactProj-env"
+  bucket_name: "elasticbeanstalk-ap-southeast-1-491264435568"
+  bucket_path: "docker-react-proj"
+  on:
+    branch: master
+  access_key_id: $AWSAKID
+  secret_access_key:
+    secure: "$AWSSAK"
